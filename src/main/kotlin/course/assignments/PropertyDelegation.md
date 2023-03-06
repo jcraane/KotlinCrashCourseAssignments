@@ -1,0 +1,41 @@
+1. In the package kotlin/course/assignments create a new Kotlin file called CustomPropertyDelegate.kt
+2. Create a Person class with a firstName and lastName property of type String. Declare them as var properties
+2. Create a new instance of this Person and assign some values to firstname and lastname
+3. Copy the following code
+
+```kotlin
+private class FileRepository(val fileName: String) {  
+    private val properties = Properties()  
+  
+    init {  
+        File(fileName).createNewFile()  
+        val file = FileInputStream(fileName)  
+        properties.load(file)  
+        file.close()  
+    }  
+  
+    fun get(key: String): String? {  
+        return properties.getProperty(key)  
+    }  
+  
+    fun set(key: String, value: String) {  
+        properties.setProperty(key, value)  
+        save()  
+    }  
+  
+    fun remove(key: String) {  
+        properties.remove(key)  
+        save()  
+    }  
+  
+    private fun save() {  
+        val file = FileOutputStream(fileName)  
+        properties.store(file, null)  
+        file.close()  
+    }  
+}
+```
+
+4. The above code reads and writes from a properties file. We want to use this class in a custom property delegate to read and write the properties of the Person class to a properties file
+5. Create a class FileRepositoryDelegate and add the getValue and setValue functions required for a custom property delegate which reads and writes the properties to a file using the FileRepository. Tip: Just use a relative filename `data.properties` which is placed in the root of the project.
+6. Run the program and observe the data.properties file

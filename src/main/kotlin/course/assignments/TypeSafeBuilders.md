@@ -1,0 +1,30 @@
+1. Create a class `Row` that represents a row in a Markdown table. A row should have a list of cells, which are represented as strings.
+2.  Create a class `Table` that represents a Markdown table. A table should have a list of rows, which are represented as `Row` objects.
+3.  Add an extension function `row` to the `Table` class that allows you to add a new row to the table. The function should take a lambda expression that allows you to specify the cells in the row.
+4.  Overload the `unuaryPlus` operator for the `Row` class, so that you can add cells to a row using the `+` operator. A cell has a String type.
+5.  Overload the `unaryPlus` operator for the `Table` class, so that you can add rows to a table using the `+` operator.
+6.  Add a `toString` method to the `Table` class that returns the markdown representation of the table. The markdown representation of a table should have a header row that specifies the column names, followed by the data rows.
+7.  Create a top-level function `table` that takes a lambda expression that allows you to build a `Table` object. The function should return the resulting `Table` object.
+
+Here is an example of how the type-safe builder could be used:
+
+```kotlin
+val table = table {
+    row {
+        +"Column 1"
+        +"Column 2"
+        +"Column 3"
+    }
+    row {
+        +"Data 1"
+        +"Data 2"
+        +"Data 3"
+    }
+}
+
+println(table)
+// Output:
+// | Column 1 | Column 2 | Column 3 |
+// | -------- | -------- | -------- |
+// | Data 1   | Data 2   | Data 3   |
+```
